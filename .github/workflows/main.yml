@@ -25,7 +25,7 @@ jobs:
             cd /home/SimpleWebApp
             sudo rm -rf /home/SimpleWebApp/DockerTest
             if [ -d ".git" ]; then
-              sudo git pull origin main
+              sudo git clone https://github.com/${{ github.repository }} .
             else
               sudo git clone https://github.com/${{ github.repository }} .
             fi
