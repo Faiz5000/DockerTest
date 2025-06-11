@@ -21,14 +21,14 @@ jobs:
       - name: Copy files to EC2
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
-            docker rm -f docketest || true
-            mkdir -p /home/ubuntu/SimpleWebApp/app
-            cd /home/ubuntu/SimpleWebApp/app
+            sudo docker rm -f docketest || true
+            sudo mkdir -p /home/ubuntu/SimpleWebApp/app
+            sudo cd /home/ubuntu/SimpleWebApp/app
             if [ -d ".git" ]; then
-              git pull origin main
+              sudo git pull origin main
             else
-              git pull || git clone https://github.com/${{ github.repository }} .
+              sudo git pull || git clone https://github.com/${{ github.repository }} .
             fi
-            docker build -t docketest .
-            docker run -d -p 80:80 --name docketest docketest
+            sudo docker build -t docketest .
+            sudo docker run -d -p 80:80 --name docketest docketest
           EOF
