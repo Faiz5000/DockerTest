@@ -29,6 +29,8 @@ jobs:
             else
               sudo git pull || git clone https://github.com/${{ github.repository }} .
             fi
+            sudo cd /home/ubuntu/SimpleWebApp/
+            sudo docker rm -f docketest || true
             sudo docker build -t docketest .
             sudo docker run -d -p 80:80 --name docketest docketest
           EOF
