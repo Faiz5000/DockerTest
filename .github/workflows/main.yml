@@ -22,14 +22,12 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
             sudo docker rm -f docketest || true
-            sudo mkdir -p /home/ubuntu/SimpleWebApp/app
-            sudo cd /home/ubuntu/SimpleWebApp/app
+            cd /home/SimpleWebApp
             if [ -d ".git" ]; then
               sudo git pull origin main
             else
               sudo git pull || git clone https://github.com/${{ github.repository }} .
             fi
-            sudo cd /home/ubuntu/SimpleWebApp/
             sudo docker rm -f docketest || true
             sudo docker build -t docketest .
             sudo docker run -d -p 80:80 --name docketest docketest
