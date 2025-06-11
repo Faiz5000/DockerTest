@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 from flask_httpauth import HTTPBasicAuth
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -12,6 +12,10 @@ auth = HTTPBasicAuth()
 users = {
     "test": generate_password_hash("test@123456")
 }
+
+@app.route('/')
+def hello():
+    return render_template('index.html')
 
 @auth.verify_password
 def verify_password(username, password):
