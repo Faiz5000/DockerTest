@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 import os
 
-app = Flask(__name__, template_folder='/templates')
+app = Flask(__name__, template_folder='/template')
 CORS(app)
 
 auth = HTTPBasicAuth()
