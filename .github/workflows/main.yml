@@ -22,12 +22,12 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
             sudo docker rm -f docketest || true
-            cd /home/SimpleWebApp
             sudo rm -rf /home/SimpleWebApp/DockerTest
+            cd /home/SimpleWebApp
             if [ -d ".git" ]; then
-              sudo git clone https://github.com/${{ github.repository }} .
+              sudo git clone https://github.com/Faiz5000/DockerTest.git
             else
-              sudo git clone https://github.com/${{ github.repository }} .
+              sudo git clone https://github.com/Faiz5000/DockerTest.git
             fi
             sudo docker rm -f docketest || true
             sudo docker build -t docketest .
