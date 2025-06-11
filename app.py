@@ -15,7 +15,7 @@ users = {
 
 @app.route('/')
 def hello():
-    return render_template('/DockerTest/index.html')
+    return render_template('../index.html')
 
 @auth.verify_password
 def verify_password(username, password):
